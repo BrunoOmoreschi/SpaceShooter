@@ -1,4 +1,4 @@
-![header](D:\Programation\socean\unity\SpaceShooter\header.png)
+![header](https://github.com/BrunoOmoreshi/SpaceShooter/blob/main/header.png)
 
 # Android:  Jogo 2D com Unity engine
 
@@ -27,4 +27,4 @@ Jogo 2D feito usando o unity como engine.
 - Contagem de vidas com respawn e
 - Aviso de Game Over com reinicio do jogo ao apertar qualquer tecla.
 
-![jogoFuncionando](D:\Programation\socean\unity\SpaceShooter\jogoFuncionando.gif)
+![jogoFuncionando](https://github.com/BrunoOmoreshi/SpaceShooter/blob/main/jogoFuncionando.gif)
