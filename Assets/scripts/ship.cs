@@ -18,6 +18,20 @@ public class ship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 topRightPoint = new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight);
+
+        Vector3 bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
+        Vector3 topRight = Camera.main.ScreenToWorldPoint(topRightPoint);
+
+        Rect cameraRect = new Rect
+        (
+            bottomLeft.x,
+            bottomLeft.y,
+            topRight.x - bottomLeft.x,
+            topRight.y - bottomLeft.y
+        );
+
+
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
@@ -27,6 +41,12 @@ public class ship : MonoBehaviour
         position.y += y * Time.deltaTime * speed;
 
         transform.position = position;
+
+        transform.position = new Vector3
+        (
+            Mathf.Clamp (transform.position.x, cameraRect.xMin, cameraRect.xMax),
+            Mathf.Clamp (transform.position.y, cameraRect.yMin, cameraRect.yMax)
+        );
 
         if (Input.GetKeyDown(KeyCode.Space)) Shot();
 
@@ -43,6 +63,8 @@ public class ship : MonoBehaviour
     void OnCollisionEnter2D (Collision2D collision)
     {
         GameObject boom = Instantiate(explosion, transform.position, transform.rotation);
+
+        GameControler.instance.UpdateLives();
 
         Destroy (collision.gameObject);
         Destroy (boom, 0.9f);
